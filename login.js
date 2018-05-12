@@ -8,8 +8,9 @@ function signin() {
         if (request.readyState == 4 && request.status == 200) {
             const response = JSON.parse(request.responseText)
             if (response["code"] == 100) {
-                result.textContent = "Session ID: " + response["session"];
-                document.cookie = "username=" + user + ";path=/";
+                document.cookie = "username=" + user.value + ";path=/";
+                document.cookie = "session=" + response["session"] + ";path=/";
+                window.location.href = "history.html";
             } else {
                 result.textContent = "Invalid username or password!";
             }
@@ -19,7 +20,7 @@ function signin() {
     }
 
     const body = {user:user.value, pass:pass.value};
-    request.open("POST", "https://localhost:8443/api/v1/signin", true);
+    request.open("POST", "http://localhost:8080/api/v1/private/signin", true);
     request.send(JSON.stringify(body));
 }
 
@@ -39,7 +40,7 @@ function signup() {
     }
 
     const body = {user:user.value, pass:pass.value};
-    request.open("POST", "https://localhost:8443/api/v1/signup", true);
+    request.open("POST", "http://localhost:8080/api/v1/private/signup", true);
     request.send(JSON.stringify(body));
 }
 
