@@ -20,6 +20,7 @@ function signin() {
     }
 
     const body = {user:user.value, pass:pass.value};
+    // Will obviously move to HTTPS with public API
     request.open("POST", "http://localhost:8080/api/v1/private/signin", true);
     request.send(JSON.stringify(body));
 }
