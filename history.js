@@ -1,9 +1,12 @@
 let username;
 let session;
+let socket;
 
 function logout() {
     username = undefined;
     session = undefined;
+    socket.disconnect();
+    socket = undefined;
 
     document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.cookie = "session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
@@ -25,6 +28,8 @@ window.onload = () => {
     }
     document.getElementById("username").textContent = username;
     document.getElementById("session").textContent = session;
+
+    socket = io('http://localhost:8082');
 
     document.getElementById("logout").onmousedown = logout
 }
