@@ -3,17 +3,22 @@ let session;
 let socket;
 
 function logout() {
-    username = undefined;
-    session = undefined;
-    socket.disconnect();
-    socket = undefined;
-
     document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.cookie = "session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
     // Some kind of API call to delete session ID
-
-    window.location.href = "login.html";
+    let delSess = new XMLHttpRequest()
+    delSess.onreadystatechange = () => {
+        if (delSess.readyState == 4) {
+            username = undefined;
+            session = undefined;
+            socket.disconnect();
+            socket = undefined;
+            window.location.href = "login.html";
+        }
+    }
+    delSess.open("POST", "http://localhost:8081/api/v1/private/sessions/del/" + session)
+    delSess.send()
 }
 
 window.onload = () => {
@@ -30,6 +35,5 @@ window.onload = () => {
     document.getElementById("session").textContent = session;
 
     socket = io('http://localhost:8082');
-
     document.getElementById("logout").onmousedown = logout
 }
