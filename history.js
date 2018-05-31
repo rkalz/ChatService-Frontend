@@ -35,5 +35,10 @@ window.onload = () => {
     document.getElementById("session").textContent = session;
 
     socket = io('http://localhost:8082');
+    socket.emit('session', { sess: session })
+    socket.on('my-ping', data => {
+        console.log("ping received")
+        socket.emit('my-pong')
+    })
     document.getElementById("logout").onmousedown = logout
 }
