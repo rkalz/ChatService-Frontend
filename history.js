@@ -6,6 +6,12 @@ function logout() {
     document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.cookie = "session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
+    params = {
+        uuid: "",
+        origin: navigator.userAgent,
+        session: session,
+    }
+
     // Some kind of API call to delete session ID
     let delSess = new XMLHttpRequest()
     delSess.onreadystatechange = () => {
@@ -17,8 +23,9 @@ function logout() {
             window.location.href = "login.html";
         }
     }
-    delSess.open("POST", "http://localhost:8081/api/v1/private/sessions/del/" + session)
-    delSess.send()
+    delSess.open("POST", "http://localhost:8081/api/v1/private/sessions/del/")
+    delSess.setRequestHeader("Content-Type", "application-json")
+    delSess.send(JSON.stringify(params))
 }
 
 window.onload = () => {
