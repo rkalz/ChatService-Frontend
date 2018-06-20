@@ -29,10 +29,11 @@ window.onload = () => {
             username = c[1];
         } else if (c.indexOf(" session") == 0) {
             session = c[1];
+            console.log("Session ID: " + session)
         }
     }
     document.getElementById("username").textContent = username;
-    document.getElementById("session").textContent = session;
+    // document.getElementById("session").textContent = session;
 
     socket = io('http://localhost:8082');
     socket.emit('session', { sess: session })

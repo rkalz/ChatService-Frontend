@@ -51,4 +51,12 @@ window.onload = () => {
     pass = document.getElementById("password")
     document.getElementById("submit").onmousedown = signin;
     document.getElementById("register").onmousedown = signup;
+
+    document.addEventListener("keypress", e => {
+        const ENTER_KEY = 13;
+        const pressed_key = e.which || e.keyCode;
+        if (pressed_key == ENTER_KEY) {
+            signin();
+        }
+    })
 }
