@@ -1,30 +1,25 @@
 let username;
 let session;
-let socket;
 
 function logout() {
     document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.cookie = "session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
     params = {
-        uuid: "",
         origin: navigator.userAgent,
+        username: username,
         session: session,
     }
 
-    // Some kind of API call to delete session ID
     let delSess = new XMLHttpRequest()
     delSess.onreadystatechange = () => {
         if (delSess.readyState == 4) {
             username = undefined;
             session = undefined;
-            socket.disconnect();
-            socket = undefined;
             window.location.href = "login.html";
         }
     }
-    delSess.open("POST", "http://localhost:8081/api/v1/private/sessions/del/")
-    delSess.setRequestHeader("Content-Type", "application-json")
+    delSess.open("POST", "http://localhost:8080/api/v1/private/signout")
     delSess.send(JSON.stringify(params))
 }
 
