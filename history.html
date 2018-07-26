@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="history.css" rel="stylesheet" type="text/css">
         <script src="history.js" ></script>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
     </head>
     <body>
-        Welcome: <div id="username"></div>!
-        <table id="chat-table" border="1">
-            <tr>
-                <th>Chat</th>
-                <th>Last Message</th>
-            </tr>
-        </table>
-        <input type="submit" id="newchat" value="newchat">
-        <input type="submit" id="logout" value="logout">
-        <embed src="window.html" align="right"/>
+        <div class="container">
+            <div class="text-center"><h1>Welcome: <div id="username" style="display: inline"></div>!</h1></div>
+            <table id="chat-table" class="table">
+                <thead>
+                    <tr>
+                        <th>Chat</th>
+                        <th>Last Message</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="align-self-center text-center">
+                <button type="submit" class="btn btn-primary" id="newchat">New Chat</button>
+                <button type="submit" class="btn btn-primary" id="logout">Logout</button>
+            </div>
+        </div>
     </body>
 </html>
