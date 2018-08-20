@@ -1,0 +1,23 @@
+{
+  "name": "chatservice",
+  "version": "1.0.0",
+  "description": "ChatService Frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkalz/ChatService-Frontend.git"
+  },
+  "author": "Rofael Aleezada",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rkalz/ChatService-Frontend/issues"
+  },
+  "homepage": "https://github.com/rkalz/ChatService-Frontend#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "request": "^2.88.0"
+  }
+}
