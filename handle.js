@@ -8,7 +8,7 @@ module.exports = {
         }
 
         request({
-            url: "http://auth:8080/api/v1/private/" + endpoint,
+            url: "http://auth/api/v1/private/" + endpoint,
             headers: {
                 "content-type": "application/json"
             },
