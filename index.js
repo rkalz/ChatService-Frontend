@@ -9,6 +9,7 @@ app.get('/', (_, res) => {
     res.sendFile(__dirname + '/static/login.html')
 })
 
+// TODO: Make sure we have correct data?
 app.get('/chats', (_, res) => {
     res.sendFile(__dirname + '/static/history.html')
 })
@@ -16,6 +17,6 @@ app.get('/chats', (_, res) => {
 app.post('/signin', (req, res) => handle.handleAuthRequest(req, res, "signin"));
 app.post('/signup', (req, res) => handle.handleAuthRequest(req, res, "signup"));
 
-app.listen(8080, () => {
-    console.log("Listening on port 8080")
+app.listen(80, () => {
+    console.log("Listening on port 80")
 })
