@@ -13,5 +13,8 @@ window.onload = () => {
         case "mongoose":
             err_desc.innerText = "Registration failed"
             break;
+        case "mongoose":
+            err_desc.innerText = "Registration successful"
+            break;
     }
 }

@@ -8,7 +8,7 @@ module.exports = {
         }
 
         request({
-            url: "http://auth/api/v1/private/" + endpoint,
+            url: "http://ilb/auth/" + endpoint,
             headers: {
                 "content-type": "application/json"
             },
@@ -19,11 +19,19 @@ module.exports = {
             } else {
                 const response = JSON.parse(body)
                 if (response["code"] == 100) {
-                    res.cookie("username", user)
-                    res.cookie("session", response["session"])
-                    res.redirect('/chats')
+                    if (endpoint == "signin") {
+                        res.cookie("username", user)
+                        res.cookie("session", response["session"])
+                        res.redirect('/chats')
+                    } else {
+                        res.redirect('/?err=viper')
+                    }
                 } else {
-                    res.redirect('/?err=turkey')
+                    if (endpoint == "signin") {
+                        res.redirect('/?err=turkey')
+                    } else {
+                        res.redirect('/?err=mongoose')
+                    }
                 }
             }
         })
