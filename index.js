@@ -1,9 +1,11 @@
 const auth = require('./auth')
 const express = require('express')
+const bodyParser = require('body-parser')
 let app = express()
 
 app.use('/js', express.static('js'))
 app.use('/css', express.static('css'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (_, res) => {
     res.sendFile(__dirname + '/static/login.html')
@@ -17,12 +19,13 @@ app.get('/chats', (_, res) => {
 app.post('/signin', (req, res) => {
     // Make sure the account is valid
     auth_outcome = auth.handleAuthRequest(req, "signin")
-    if (auth_outcome == auth.responseCodes.accountCreationFailed) {
-        res.redirect('/?err=mongoose')
+    if (auth_outcome == auth.responseCodes.accountLoginFailed) {
+        res.redirect('/?err=fish')
         return
     }
 
     // Generate a session id
+    res.redirect('/')
 })
 
 app.post('/signup', (req, res) => {

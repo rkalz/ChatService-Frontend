@@ -7,4 +7,3 @@ WORKDIR /usr/src/frontend
 COPY .\ .
 
 RUN npm install
-RUN ls .
